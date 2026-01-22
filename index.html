@@ -3,298 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nirdesh Ale | Cinematographer & Editor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Playfair+Display:ital,wght@0,400;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Nirdesh Ale | Cinematic Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <style>
         :root {
-            --bg: #050505;
-            --card-bg: #111111;
-            --accent: #e63946; /* Cinematic Red */
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --bg: #21242A;
+            --accent: #ad3539; 
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-dim: #888;
+            /* INCREASED WIDTH FOR WIDER LOOK */
+            --container-width: 1600px; 
         }
 
-        /* Essential Reset & Scroll Snapping */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
-        
+        html { scroll-behavior: smooth; }
         body {
-            background-color: var(--bg);
-            color: var(--text-main);
+            background: var(--bg);
+            color: #fff;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* Film Grain & Vignette Overlay */
-        .cinematic-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 999;
-            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
-        }
-
+        /* --- BACKGROUND TEXTURE --- */
         .grain {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 1000;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.03; pointer-events: none; z-index: 1000;
         }
 
-        /* Typography */
-        h1, h2, .accent-font { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: 4px; }
-        .serif { font-family: 'Playfair Display', serif; font-style: italic; }
-
-        section {
+        /* --- HERO --- */
+        .hero {
             height: 100vh;
-            width: 100%;
-            scroll-snap-align: start;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            position: relative;
-            padding: 0 10%;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            background: linear-gradient(rgba(94,102,103,0.7),rgba(33,36,42,1)), 
+                        url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        /* Animations */
-        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .hero h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 12px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
 
-        /* Hero Section */
-        .hero-video {
+        .hero p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .cta-group { display: flex; gap: 20px; }
+
+        .btn-glow {
+            padding: 16px 32px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-glow:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(230, 57, 70, 0.4); }
+
+        .btn-outline-hero {
+            padding: 16px 32px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-hero:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+        /* --- WIDER CONTENT SECTION --- */
+        .content-section {
+            padding: 140px 4%; /* Reduced side padding to utilize more width */
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+            border-left: 4px solid var(--accent);
+            padding-left: 25px;
+        }
+
+        .section-header h2 { font-family: 'Syncopate'; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 4px; }
+        .section-header p { color: var(--text-dim); margin-top: 10px; font-size: 1rem; }
+
+        /* --- ENHANCED GRID --- */
+        .unified-grid {
+            display: grid;
+            /* Wider min-size for a bigger card presence */
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
+            gap: 40px; /* Increased gap for breathing room */
+        }
+
+        .interactive-card {
+            position: relative;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Spotlight Hover logic */
+        .interactive-card::before {
+            content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            filter: brightness(40%) contrast(110%);
-        }
-        .hero-video iframe {
-            width: 100vw; height: 56.25vw; /* 16:9 */
-            min-height: 100vh; min-width: 177.77vh;
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(230, 57, 70, 0.12), transparent 40%);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.5s;
             pointer-events: none;
         }
 
-        .hero-content { text-align: center; }
-        .hero-content h1 { font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 10px; }
-        .hero-content p { color: var(--accent); font-weight: 600; letter-spacing: 2px; margin-bottom: 30px; }
+        .interactive-card:hover::before { opacity: 1; }
+        .interactive-card:hover { transform: translateY(-12px); border-color: var(--accent); }
 
-        /* Buttons */
-        .btn-group { display: flex; gap: 20px; justify-content: center; margin-top: 20px; }
-        .btn {
-            padding: 16px 32px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: var(--transition);
-            border-radius: 2px;
-        }
-        .btn-solid { background: var(--accent); color: white; box-shadow: 0 0 0 rgba(230, 57, 70, 0); }
-        .btn-solid:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(230, 57, 70, 0.4); }
-        .btn-outline { border-bottom: 2px solid transparent; color: white; }
-        .btn-outline:hover { border-bottom: 2px solid var(--accent); }
-
-        /* Works Grid */
-        .works-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-        }
-        .work-card {
-            background: var(--card-bg);
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-        }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        /* Video Area */
+        .iframe-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+        .iframe-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
         
-        .work-info { padding: 20px; border-top: 1px solid #222; }
-        .work-info h3 { font-size: 1rem; margin-bottom: 5px; }
-        .work-info span { color: var(--accent); font-size: 0.7rem; text-transform: uppercase; font-weight: 700; }
+        /* Service Content */
+        .service-content { padding: 60px 50px; }
+        .service-content i { font-size: 3rem; color: var(--accent); margin-bottom: 30px; display: block; }
+        
+        .card-meta { padding: 30px; }
+        .card-meta span { color: var(--accent); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; }
+        .card-meta h3, .service-content h3 { margin-top: 8px; font-size: 1.4rem; font-weight: 700; }
+        .service-description { color: var(--text-dim); font-size: 1rem; margin-top: 15px; line-height: 1.6; }
 
-        /* Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            width: 100%;
+        /* --- CONTACT SECTION --- */
+        .contact-section {
+            padding: 120px 5%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            max-width: var(--container-width);
+            margin: 100px auto 0;
         }
-        .service-card {
-            background: #111;
-            padding: 40px 25px;
-            border: 1px solid #222;
-            transition: var(--transition);
-        }
-        .service-card:hover { transform: translateY(-10px); border-color: var(--accent); background: #161616; }
-        .service-card h3 { color: var(--accent); margin-bottom: 15px; font-size: 0.9rem; }
 
-        /* Contact Section */
-        .social-icons {
+        .contact-section h2 { font-family: 'Syncopate'; font-size: 2.5rem; margin-bottom: 60px; letter-spacing: 8px; text-transform: uppercase; }
+
+        .social-row {
             display: flex;
-            gap: 30px;
-            margin: 40px 0;
+            gap: 50px;
+            flex-wrap: wrap;
             justify-content: center;
         }
-        .social-icons a {
-            color: white;
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             text-decoration: none;
-            font-size: 0.9rem;
-            opacity: 0.6;
-            transition: var(--transition);
-        }
-        .social-icons a:hover { opacity: 1; color: var(--accent); transform: scale(1.1) rotate(2deg); }
-
-        form { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 15px; }
-        input, textarea {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #333;
-            padding: 15px;
-            color: white;
-            font-family: inherit;
-        }
-        input:focus { outline: none; border-bottom-color: var(--accent); }
-
-        footer {
-            position: absolute; bottom: 20px; width: 100%; text-align: center;
-            font-size: 0.7rem; color: var(--text-dim); letter-spacing: 2px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            opacity: 0.4;
         }
 
-        /* Responsiveness */
-        @media (max-width: 900px) {
-            .works-container { grid-template-columns: 1fr; }
-            section { height: auto; min-height: 100vh; padding: 80px 5%; }
-            html { scroll-snap-type: none; }
+        .social-item:hover { opacity: 1; color: var(--accent); transform: translateY(-5px); }
+        .social-item i { font-size: 1.4rem; }
+
+        /* --- ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Responsive Fixes */
+        @media (max-width: 1024px) {
+            .unified-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
         }
+
+        @media (max-width: 768px) {
+            .unified-grid { grid-template-columns: 1fr; }
+            .social-row { gap: 20px; }
+            .social-item span { display: none; }
+            .hero h1 { letter-spacing: 5px; }
+        }
+
+        /* --- VIDEO MODAL STYLES --- */
+.video-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    padding: 20px;
+}
+
+.video-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-overlay {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: rgba(33, 36, 42, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.video-modal.active .modal-container { transform: translateY(0); }
+
+.modal-video-box {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #21242a;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(33, 36, 42, 0.8);
+    border: 1px solid var(--border);
+}
+
+#modalIframe { width: 100%; height: 100%; }
+
+.modal-footer {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.modal-footer h3 { font-family: 'Syncopate'; font-size: 1.5rem; letter-spacing: 2px; }
+.modal-footer p { color: var(--accent); text-transform: uppercase; font-size: 0.8rem; font-weight: 800; margin-top: 5px; }
+
+.close-btn {
+    position: absolute;
+    top: -50px; right: 0;
+    background: none; border: none;
+    color: #fff; cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.close-btn:hover { transform: rotate(90deg) scale(1.2); color: var(--accent); }
+
+.video-trigger { cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div class="grain"></div>
-    <div class="cinematic-overlay"></div>
 
-    <section id="hero">
-        <div class="hero-video">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&modestbranding=1" allow="autoplay"></iframe>
-        </div>
-        <div class="hero-content reveal">
-            <h1>Nirdesh Ale</h1>
-            <p>Video Editor & Cinematographer</p>
-            <h2 class="serif" style="text-transform: none; letter-spacing: 0; font-size: 1.5rem;">Crafting Stories Through Motion, Mood & Emotion</h2>
-            <div class="btn-group">
-                <a href="#work" class="btn btn-solid">View Showreel</a>
-                <a href="#contact" class="btn btn-outline">Get In Touch</a>
-            </div>
+    <section class="hero">
+        <h1 class="reveal">NIRDESH ALE</h1>
+        <p class="reveal">Visual Storytelling • Editorial • Cinema</p>
+        <div class="cta-group reveal">
+            <a href="#showreel" class="btn-glow">View Showreel</a>
+            <a href="#contact" class="btn-outline-hero">Let's Collaborate</a>
         </div>
     </section>
 
-    <section id="work">
-        <div class="works-container">
-            <div class="work-card reveal">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/zpOULjyy-n8" allowfullscreen></iframe>
-                </div>
-                <div class="work-info">
-                    <span>Cinematography • Color</span>
-                    <h3>The Urban Narrative</h3>
+    <section class="content-section" id="showreel">
+    <div class="section-header reveal">
+        <h2>Selected Works</h2>
+        <p>Click a project to view the cinematic experience.</p>
+    </div>
+
+    <div class="unified-grid">
+        <div class="interactive-card reveal video-trigger" 
+             data-video="dv8pAiu2peQ" 
+             data-title="The Urban Frontier" 
+             data-category="Directing / Editing">
+            <div class="iframe-wrapper" style="pointer-events: none;">
+                <img src="https://img.youtube.com/vi/dv8pAiu2peQ/maxresdefault.jpg" style="width:100%; height:100%; object-fit:cover; position:absolute;">
+                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; font-size:3rem; opacity:0.8;">
+                    <i class="fas fa-play-circle"></i>
                 </div>
             </div>
-            <div class="work-card reveal" style="transition-delay: 0.2s;">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/3JZ_D3iqx8M" allowfullscreen></iframe>
-                </div>
-                <div class="work-info">
-                    <span>Editing • Visual FX</span>
-                    <h3>Echoes of Silence</h3>
-                </div>
+            <div class="card-meta">
+                <span>Directing / Editing</span>
+                <h3>The Urban Frontier</h3>
             </div>
         </div>
-    </section>
 
-    <section id="services">
-        <div style="width: 100%; max-width: 1200px;">
-            <h2 class="reveal" style="margin-bottom: 50px; font-size: 1.2rem;">Expertise</h2>
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <h3>Video Editing</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-dim);">Pacing, rhythm, and narrative structure designed for impact.</p>
+        <div class="interactive-card reveal video-trigger" 
+             data-video="dv8pAiu2peQ" 
+             data-title="Eternal Summer" 
+             data-category="Cinematography">
+            <div class="iframe-wrapper" style="pointer-events: none;">
+                <img src="https://img.youtube.com/vi/dv8pAiu2peQ/maxresdefault.jpg" style="width:100%; height:100%; object-fit:cover; position:absolute;">
+                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; font-size:3rem; opacity:0.8;">
+                    <i class="fas fa-play-circle"></i>
                 </div>
-                <div class="service-card reveal" style="transition-delay: 0.1s;">
+            </div>
+            <div class="card-meta">
+                <span>Cinematography</span>
+                <h3>Eternal Summer</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="videoModal" class="video-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+        <button class="close-btn"><i data-lucide="x"></i></button>
+        <div class="modal-video-box">
+            <iframe id="modalIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <div class="modal-footer">
+            <h3 id="modalTitle">Project Title</h3>
+            <p id="modalCategory">Category</p>
+        </div>
+    </div>
+</div>
+    <section class="content-section" id="services">
+        <div class="section-header reveal">
+            <h2>Services</h2>
+            <p>Bespoke post-production and cinematography for global brands.</p>
+        </div>
+        
+        <div class="unified-grid">
+            <div class="interactive-card reveal">
+                <div class="service-content">
+                    <i data-lucide="clapperboard"></i>
                     <h3>Cinematography</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-dim);">Capturing light and movement with professional-grade optics.</p>
+                    <p class="service-description">Advanced camera operation focused on evocative lighting, purposeful framing, and visual depth.</p>
                 </div>
-                <div class="service-card reveal" style="transition-delay: 0.2s;">
+            </div>
+            <div class="interactive-card reveal">
+                <div class="service-content">
+                    <i data-lucide="scissors"></i>
+                    <h3>Precision Editing</h3>
+                    <p class="service-description">Masterful pacing and rhythm that elevates narrative impact and maintains viewer retention.</p>
+                </div>
+            </div>
+            <div class="interactive-card reveal">
+                <div class="service-content">
+                    <i data-lucide="wand-2"></i>
                     <h3>Color Grading</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-dim);">Advanced color science to evoke specific emotional responses.</p>
-                </div>
-                <div class="service-card reveal" style="transition-delay: 0.3s;">
-                    <h3>Film Production</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-dim);">Full-cycle content creation for brands and artists.</p>
+                    <p class="service-description">Professional-grade color science used to manipulate mood and achieve a high-end filmic aesthetic.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <div class="hero-content reveal" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-            <h2 style="font-size: 1.5rem;">Let's Create</h2>
-            
-            <div class="social-icons">
-                <a href="#">INSTAGRAM</a>
-                <a href="#">YOUTUBE</a>
-                <a href="#">VIMEO</a>
-                <a href="#">WHATSAPP</a>
-            </div>
-
-            <form>
-                <input type="text" placeholder="NAME" required>
-                <input type="email" placeholder="EMAIL" required>
-                <textarea rows="4" placeholder="PROJECT DESCRIPTION"></textarea>
-                <button type="submit" class="btn btn-solid" style="border:none; cursor: pointer; margin-top: 20px;">Send Message</button>
-            </form>
-
-            <footer>
-                © 2026 Nirdesh Ale — CINEMATOGRAPHER
-            </footer>
+    <section class="contact-section reveal" id="contact">
+        <h2>Let's Collaborate</h2>
+        <div class="social-row">
+            <a href="https://www.instagram.com/ig_neerdace" class="social-item"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+            <a href="https://www.youtube.com/@neerdace" class="social-item"><i class="fab fa-youtube"></i><span>YouTube</span></a>
+            <a href="https://discord.com/users/487214484239417344" class="social-item"><i class="fab fa-discord"></i><span>Discord</span></a>
+            <a href="https://www.facebook.com/nirdeshale" class="social-item"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+            <a href="https://wa.me/+9779860369302" class="social-item"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
         </div>
     </section>
+
+    <footer style="text-align: center; padding: 100px 0 60px; color: #888; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;">
+        © 2026 NIRDESH ALE. ALL RIGHTS RESERVED.
+    </footer>
 
     <script>
-        // Disable Right Click to prevent easy video URL/content scraping
-        document.addEventListener('contextmenu', event => event.preventDefault());
+        lucide.createIcons();
 
-        // Intersection Observer for Reveal Animations
-        const observerOptions = { threshold: 0.2 };
+        // Reveal Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Form Submit Simulation
-        document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.innerHTML = "SENDING...";
-            setTimeout(() => {
-                btn.innerHTML = "MESSAGE SENT";
-                btn.style.background = "#28a745";
-                e.target.reset();
-            }, 2000);
+        // Interactive Spotlight Effect for ALL cards
+        const cards = document.querySelectorAll(".interactive-card");
+        document.addEventListener("mousemove", (e) => {
+            cards.forEach((card) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            });
         });
+
+        const modal = document.getElementById('videoModal');
+const modalIframe = document.getElementById('modalIframe');
+const modalTitle = document.getElementById('modalTitle');
+const modalCategory = document.getElementById('modalCategory');
+const closeBtn = document.querySelector('.close-btn');
+const overlay = document.querySelector('.modal-overlay');
+
+// Open Modal logic
+document.querySelectorAll('.video-trigger').forEach(card => {
+    card.addEventListener('click', () => {
+        const videoId = card.getAttribute('data-video');
+        const title = card.getAttribute('data-title');
+        const category = card.getAttribute('data-category');
+
+        // Set content
+        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+        modalTitle.innerText = title;
+        modalCategory.innerText = category;
+
+        // Show modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Stop scrolling
+    });
+});
+
+// Close Modal function
+function closeModal() {
+    modal.classList.remove('active');
+    modalIframe.src = ""; // Stop the video
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+}
+
+closeBtn.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+
+// Close on Escape Key
+document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") closeModal();
+});
     </script>
 </body>
 </html>
