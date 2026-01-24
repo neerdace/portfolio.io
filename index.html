@@ -1,39 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nirdesh Ale | Cinematic Portfolio</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Syncopate:wght@700&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-        :root {
-            --bg: #21242A;
-            --accent: #ad3539; 
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-            --text-dim: #888;
-            /* INCREASED WIDTH FOR WIDER LOOK */
-            --container-width: 1600px; 
-        }
+        /* --- THEME VARIABLES --- */
+:root {
+    --accent: #ad3539;
+    --container-width: 1600px;
+    
+    /* Light Theme (Default) */
+    --bg: #e9dfd8;
+    --text: #1a1a1a;
+    --text-dim: #454545;
+    --glass: rgba(190, 175, 142, 0.15);
+    --border: rgba(15, 15, 15, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.3);
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            background: var(--bg);
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
+/* Dark Theme overrides */
+body.dark-theme {
+    --bg: #0f1114;
+    --text: #e9dfd8;
+    --text-dim: #a0a0a0;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(20, 22, 26, 0.6);
+}
 
-        /* --- BACKGROUND TEXTURE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- NAVIGATION & LOGO --- */
+/* --- UPDATED NAVIGATION --- */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    z-index: 2000;
+    
+    /* Initial State: Invisible and moved up */
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none; /* Prevents clicking links while hidden */
+    
+    /* Smooth transition for the reveal */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+}
+
+/* Scrolled State: Visible with background */
+.nav-bar.scrolled {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+    background: var(--bg); /* Uses your theme's background color */
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+/* Ensure the logo and toggle stay centered/right inside the bar */
+.nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Syncopate', sans-serif;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 5px;
+    font-weight: 900;
+}
+
+.theme-toggle {
+    margin-left: auto;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Fix for existing cards to use variables */
+.interactive-card {
+    background: var(--card-bg) !important;
+}
+
+.section-header p, .service-description , .social-item{
+    color: var(--text-dim);
+}
+
         .grain {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.03; pointer-events: none; z-index: 1000;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
         }
 
         /* --- HERO --- */
@@ -45,8 +147,8 @@
             align-items: center;
             text-align: center;
             padding: 0 5%;
-            background: linear-gradient(rgba(94,102,103,0.7),rgba(33,36,42,1)), 
-                        url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2000');
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgb(10, 10, 10)),
+                url('./images/main.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -58,51 +160,62 @@
             letter-spacing: 12px;
             margin-bottom: 15px;
             text-transform: uppercase;
+            color: #e9dfd8;
         }
 
         .hero p {
             font-size: 0.9rem;
-            color: var(--text-dim);
+            color: #e9dfd8;
             letter-spacing: 5px;
             text-transform: uppercase;
             margin-bottom: 40px;
         }
 
-        .cta-group { display: flex; gap: 20px; }
+        .cta-group {
+            display: flex;
+            gap: 20px;
+        }
 
         .btn-glow {
             padding: 16px 32px;
             background: var(--accent);
-            color: #fff;
+            color: #e9dfd8;
             text-decoration: none;
             font-weight: 700;
             font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             border-radius: 4px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s;
         }
 
-        .btn-glow:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(230, 57, 70, 0.4); }
+        .btn-glow:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(173, 53, 57, 0.4);
+        }
 
         .btn-outline-hero {
             padding: 16px 32px;
-            color: #fff;
+            color: #e9dfd8;
             text-decoration: none;
             font-weight: 700;
             font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .btn-outline-hero:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+        .btn-outline-hero:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #e9dfd8;
+        }
 
         /* --- WIDER CONTENT SECTION --- */
         .content-section {
-            padding: 140px 4%; /* Reduced side padding to utilize more width */
+            padding: 140px 4%;
+            /* Reduced side padding to utilize more width */
             max-width: var(--container-width);
             margin: 0 auto;
         }
@@ -113,15 +226,26 @@
             padding-left: 25px;
         }
 
-        .section-header h2 { font-family: 'Syncopate'; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 4px; }
-        .section-header p { color: var(--text-dim); margin-top: 10px; font-size: 1rem; }
+        .section-header h2 {
+            font-family: 'Syncopate';
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .section-header p {
+            color: var(--text-dim);
+            margin-top: 10px;
+            font-size: 1rem;
+        }
 
         /* --- ENHANCED GRID --- */
         .unified-grid {
             display: grid;
             /* Wider min-size for a bigger card presence */
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
-            gap: 40px; /* Increased gap for breathing room */
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            /* Increased gap for breathing room */
         }
 
         .interactive-card {
@@ -137,7 +261,10 @@
         .interactive-card::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(230, 57, 70, 0.12), transparent 40%);
             z-index: 0;
             opacity: 0;
@@ -145,21 +272,69 @@
             pointer-events: none;
         }
 
-        .interactive-card:hover::before { opacity: 1; }
-        .interactive-card:hover { transform: translateY(-12px); border-color: var(--accent); }
+        .interactive-card:hover::before {
+            opacity: 1;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent);
+            box-shadow: rgba(173, 53, 57, 0.4);
+        }
 
         /* Video Area */
-        .iframe-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
-        .iframe-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        
+        .iframe-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         /* Service Content */
-        .service-content { padding: 60px 50px; }
-        .service-content i { font-size: 3rem; color: var(--accent); margin-bottom: 30px; display: block; }
-        
-        .card-meta { padding: 30px; }
-        .card-meta span { color: var(--accent); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; }
-        .card-meta h3, .service-content h3 { margin-top: 8px; font-size: 1.4rem; font-weight: 700; }
-        .service-description { color: var(--text-dim); font-size: 1rem; margin-top: 15px; line-height: 1.6; }
+        .service-content {
+            padding: 60px 50px;
+        }
+
+        .service-content i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .card-meta {
+            padding: 30px;
+        }
+
+        .card-meta span {
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .card-meta h3,
+        .service-content h3 {
+            margin-top: 8px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .service-description {
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
 
         /* --- CONTACT SECTION --- */
         .contact-section {
@@ -170,7 +345,14 @@
             margin: 100px auto 0;
         }
 
-        .contact-section h2 { font-family: 'Syncopate'; font-size: 2.5rem; margin-bottom: 60px; letter-spacing: 8px; text-transform: uppercase; }
+        .contact-section h2 {
+            font-family: 'Syncopate';
+            font-size: 1.6rem;
+            margin-bottom: 60px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #454545;
+        }
 
         .social-row {
             display: flex;
@@ -184,7 +366,7 @@
             align-items: center;
             gap: 15px;
             text-decoration: none;
-            color: #fff;
+            color: var(--text-dim) ;
             font-weight: 600;
             font-size: 1rem;
             letter-spacing: 2px;
@@ -193,102 +375,340 @@
             opacity: 0.4;
         }
 
-        .social-item:hover { opacity: 1; color: var(--accent); transform: translateY(-5px); }
-        .social-item i { font-size: 1.4rem; }
+        .social-item:hover {
+            opacity: 1;
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .social-item i {
+            font-size: 1.4rem;
+        }
 
         /* --- ANIMATIONS --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.5s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* Responsive Fixes */
         @media (max-width: 1024px) {
-            .unified-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
+            .unified-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
-            .unified-grid { grid-template-columns: 1fr; }
-            .social-row { gap: 20px; }
-            .social-item span { display: none; }
-            .hero h1 { letter-spacing: 5px; }
+            .unified-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-row {
+                gap: 20px;
+            }
+
+            .social-item span {
+                display: none;
+            }
+
+            .hero h1 {
+                letter-spacing: 5px;
+            }
         }
 
         /* --- VIDEO MODAL STYLES --- */
-.video-modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    padding: 20px;
-}
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
 
-.video-modal.active {
-    opacity: 1;
-    pointer-events: all;
-}
+        .video-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
 
-.modal-overlay {
-    position: absolute;
-    width: 100%; height: 100%;
-    background: rgba(33, 36, 42, 0.95);
-    backdrop-filter: blur(10px);
-}
+        .modal-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(33, 36, 42, 0.95);
+            backdrop-filter: blur(10px);
+        }
 
-.modal-container {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    transform: translateY(20px);
-    transition: transform 0.4s ease;
-}
+        .modal-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
 
-.video-modal.active .modal-container { transform: translateY(0); }
+        .video-modal.active .modal-container {
+            transform: translateY(0);
+        }
 
-.modal-video-box {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: #21242a;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 30px 60px rgba(33, 36, 42, 0.8);
-    border: 1px solid var(--border);
-}
+        .modal-video-box {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #21242a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(33, 36, 42, 0.8);
+            border: 1px solid var(--border);
+        }
 
-#modalIframe { width: 100%; height: 100%; }
+        #modalIframe {
+            width: 100%;
+            height: 100%;
+        }
 
-.modal-footer {
-    margin-top: 25px;
-    text-align: left;
-}
+        .modal-footer {
+            margin-top: 25px;
+            text-align: left;
+        }
 
-.modal-footer h3 { font-family: 'Syncopate'; font-size: 1.5rem; letter-spacing: 2px; }
-.modal-footer p { color: var(--accent); text-transform: uppercase; font-size: 0.8rem; font-weight: 800; margin-top: 5px; }
+        .modal-footer h3 {
+            font-family: 'Syncopate';
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
 
-.close-btn {
-    position: absolute;
-    top: -50px; right: 0;
-    background: none; border: none;
-    color: #fff; cursor: pointer;
-    transition: transform 0.3s;
-}
+        .modal-footer p {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-top: 5px;
+        }
 
-.close-btn:hover { transform: rotate(90deg) scale(1.2); color: var(--accent); }
+        .close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
 
-.video-trigger { cursor: pointer; }
+        .close-btn:hover {
+            transform: rotate(90deg) scale(1.2);
+            color: var(--accent);
+        }
+
+        .video-trigger {
+            cursor: pointer;
+        }
+
+        .center-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: #e9dfd8;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .interactive-card:hover .center-play {
+            transform: translate(-50%, -50%) scale(1.2);
+            color: var(--accent);
+        }
+
+        /* --- CUSTOM PLAYER MODAL STYLES --- */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 17, 20, 0.98);
+            backdrop-filter: blur(15px);
+        }
+
+        .modal-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            z-index: 10;
+        }
+
+        .player-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #222;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        #customPlayer {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* The Shield protects the YT logo from being clicked */
+        .video-shield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            cursor: pointer;
+        }
+
+        .center-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: var(--accent);
+            z-index: 6;
+            pointer-events: none;
+            transition: 0.3s;
+            opacity: 0.8;
+        }
+
+        .custom-controls {
+            background: #1a1d23;
+            padding: 25px;
+            border-radius: 0 0 12px 12px;
+            border: 1px solid var(--border);
+            border-top: none;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+            color: #e9dfd8;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .time-display {
+            font-size: 0.8rem;
+            color: #888;
+            font-family: monospace;
+            min-width: 45px;
+        }
+
+        .meta-info {
+            margin-top: 15px;
+        }
+
+        .theme-title {
+            font-family: 'Syncopate';
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #e9dfd8;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #e9dfd8;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .hover-card:hover {
+            box-shadow: rgba(173, 53, 57, 0.8);
+            transform: translateY(-12px);
+        }
+
+        .hover-card .service-content:hover {
+            transform: rotate3d(0,5,-2,-1deg)
+
+        }
     </style>
 </head>
+
 <body>
 
     <div class="grain"></div>
 
+    <nav class="nav-bar">
+        <a href="#" class="nav-logo">N.ALE</a> <button class="theme-toggle" id="themeBtn">
+            <i data-lucide="moon"></i>
+        </button>
+    </nav>
+
     <section class="hero">
         <h1 class="reveal">NIRDESH ALE</h1>
-        <p class="reveal">Visual Storytelling • Editorial • Cinema</p>
+        <p class="reveal">Visual Storytelling • Editor • Cinema</p>
         <div class="cta-group reveal">
             <a href="#showreel" class="btn-glow">View Showreel</a>
             <a href="#contact" class="btn-outline-hero">Let's Collaborate</a>
@@ -296,168 +716,308 @@
     </section>
 
     <section class="content-section" id="showreel">
-    <div class="section-header reveal">
-        <h2>Selected Works</h2>
-        <p>Click a project to view the cinematic experience.</p>
-    </div>
+        <div class="section-header reveal">
+            <h2>Selected Works</h2>
+            <p>Click a project to view the cinematic experience.</p>
+        </div>
 
-    <div class="unified-grid">
-        <div class="interactive-card reveal video-trigger" 
-             data-video="dv8pAiu2peQ" 
-             data-title="The Urban Frontier" 
-             data-category="Directing / Editing">
-            <div class="iframe-wrapper" style="pointer-events: none;">
-                <img src="https://img.youtube.com/vi/dv8pAiu2peQ/maxresdefault.jpg" style="width:100%; height:100%; object-fit:cover; position:absolute;">
-                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; font-size:3rem; opacity:0.8;">
-                    <i class="fas fa-play-circle"></i>
+        <div class="unified-grid">
+
+            <!-- Video embbed section starts here -->
+
+            <div class="interactive-card hover-card reveal video-trigger" data-video="Yc4NF8kOM6c"
+                data-title="Nepali Traditional Marriage Video" data-category="Editor / Color / Cinematography">
+                <div class="iframe-wrapper">
+                    <img src="https://img.youtube.com/vi/Yc4NF8kOM6c/maxresdefault.jpg"
+                        style="width:100%; height:100%; object-fit:cover; position:absolute;">
+                    <div class="center-play"><i class="fas fa-play-circle"></i></div>
+                </div>
+                <div class="card-meta">
+                    <span>Editor / Color / Cinematography</span>
+                    <h3>Nepali Traditional Marriage Video </h3>
                 </div>
             </div>
-            <div class="card-meta">
-                <span>Directing / Editing</span>
-                <h3>The Urban Frontier</h3>
-            </div>
-        </div>
 
-        <div class="interactive-card reveal video-trigger" 
-             data-video="dv8pAiu2peQ" 
-             data-title="Eternal Summer" 
-             data-category="Cinematography">
-            <div class="iframe-wrapper" style="pointer-events: none;">
-                <img src="https://img.youtube.com/vi/dv8pAiu2peQ/maxresdefault.jpg" style="width:100%; height:100%; object-fit:cover; position:absolute;">
-                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; font-size:3rem; opacity:0.8;">
-                    <i class="fas fa-play-circle"></i>
+            <div class="interactive-card hover-card reveal video-trigger" data-video="dv8pAiu2peQ" data-title="Eternal Summer"
+                data-category="Cinematography">
+                <div class="iframe-wrapper">
+                    <img src="https://img.youtube.com/vi/dv8pAiu2peQ/maxresdefault.jpg"
+                        style="width:100%; height:100%; object-fit:cover; position:absolute;">
+                    <div class="center-play"><i class="fas fa-play-circle"></i></div>
+                </div>
+                <div class="card-meta">
+                    <span>Cinematography</span>
+                    <h3>Eternal Summer</h3>
                 </div>
             </div>
-            <div class="card-meta">
-                <span>Cinematography</span>
-                <h3>Eternal Summer</h3>
+
+            <!-- Video embbed section ends here -->
+
+        </div>
+    </section>
+
+    <div id="videoModal" class="video-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="close-btn"><i data-lucide="x"></i></button>
+
+            <div class="player-wrapper">
+                <div id="customPlayer"></div>
+                <div class="video-shield" id="playPauseBig"></div>
+                <div class="center-play" id="centerPlay"><i class="fas fa-play"></i></div>
+            </div>
+
+            <div class="custom-controls">
+                <div class="control-row">
+                    <button id="mainPlayBtn" class="theme-btn"><i class="fas fa-play"></i></button>
+                    <div class="time-display"><span id="currTime">0:00</span></div>
+
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+
+                    <div class="time-display"><span id="totalTime">0:00</span></div>
+                    <button id="muteBtn" class="theme-btn"><i class="fas fa-volume-up"></i></button>
+                </div>
+
+                <div class="meta-info">
+                    <p id="modalTitle" class="theme-title">PROJECT TITLE</p>
+                    <p id="modalCategory"
+                        style="color: var(--accent); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-top: 5px;">
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</section>
 
-<div id="videoModal" class="video-modal">
-    <div class="modal-overlay"></div>
-    <div class="modal-container">
-        <button class="close-btn"><i data-lucide="x"></i></button>
-        <div class="modal-video-box">
-            <iframe id="modalIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </div>
-        <div class="modal-footer">
-            <h3 id="modalTitle">Project Title</h3>
-            <p id="modalCategory">Category</p>
-        </div>
-    </div>
-</div>
+    <!-- Services Section Starts Here -->
+
     <section class="content-section" id="services">
         <div class="section-header reveal">
             <h2>Services</h2>
             <p>Bespoke post-production and cinematography for global brands.</p>
         </div>
-        
+
         <div class="unified-grid">
-            <div class="interactive-card reveal">
+            <div class="interactive-card hover-card reveal">
                 <div class="service-content">
                     <i data-lucide="clapperboard"></i>
                     <h3>Cinematography</h3>
-                    <p class="service-description">Advanced camera operation focused on evocative lighting, purposeful framing, and visual depth.</p>
+                    <p class="service-description">Advanced camera operation focused on evocative lighting, purposeful
+                        framing, and visual depth.</p>
                 </div>
             </div>
-            <div class="interactive-card reveal">
+            <div class="interactive-card hover-card reveal">
                 <div class="service-content">
                     <i data-lucide="scissors"></i>
                     <h3>Precision Editing</h3>
-                    <p class="service-description">Masterful pacing and rhythm that elevates narrative impact and maintains viewer retention.</p>
+                    <p class="service-description">Masterful pacing and rhythm that elevates narrative impact and
+                        maintains viewer retention.</p>
                 </div>
             </div>
-            <div class="interactive-card reveal">
+            <div class="interactive-card hover-card reveal">
                 <div class="service-content">
                     <i data-lucide="wand-2"></i>
                     <h3>Color Grading</h3>
-                    <p class="service-description">Professional-grade color science used to manipulate mood and achieve a high-end filmic aesthetic.</p>
+                    <p class="service-description">Professional-grade color science used to manipulate mood and achieve
+                        a high-end filmic aesthetic.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Collaboration Section Starts Here -->
 
     <section class="contact-section reveal" id="contact">
         <h2>Let's Collaborate</h2>
         <div class="social-row">
-            <a href="https://www.instagram.com/ig_neerdace" class="social-item"><i class="fab fa-instagram"></i><span>Instagram</span></a>
-            <a href="https://www.youtube.com/@neerdace" class="social-item"><i class="fab fa-youtube"></i><span>YouTube</span></a>
-            <a href="https://discord.com/users/487214484239417344" class="social-item"><i class="fab fa-discord"></i><span>Discord</span></a>
-            <a href="https://www.facebook.com/nirdeshale" class="social-item"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
-            <a href="https://wa.me/+9779860369302" class="social-item"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+            <a href="https://www.instagram.com/ig_neerdace" class="social-item"><i
+                    class="fab fa-instagram"></i><span>Instagram</span></a>
+            <a href="https://www.youtube.com/@neerdace" class="social-item"><i
+                    class="fab fa-youtube"></i><span>YouTube</span></a>
+            <a href="https://discord.com/users/487214484239417344" class="social-item"><i
+                    class="fab fa-discord"></i><span>Discord</span></a>
+            <a href="https://www.facebook.com/nirdeshale" class="social-item"><i
+                    class="fab fa-facebook-f"></i><span>Facebook</span></a>
+            <a href="https://wa.me/+9779860369302" class="social-item"><i
+                    class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 100px 0 60px; color: #888; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;">
+    <footer
+        style="text-align: center; padding: 100px 0 60px; color: #444; font-size: 0.82rem; letter-spacing: 3px; text-transform: uppercase;">
         © 2026 NIRDESH ALE. ALL RIGHTS RESERVED.
     </footer>
-
     <script>
         lucide.createIcons();
 
         // Reveal Animation
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Interactive Spotlight Effect for ALL cards
+        // Spotlight Effect
         const cards = document.querySelectorAll(".interactive-card");
         document.addEventListener("mousemove", (e) => {
             cards.forEach((card) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty("--mouse-x", `${x}px`);
-                card.style.setProperty("--mouse-y", `${y}px`);
+                card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+                card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
             });
         });
 
-        const modal = document.getElementById('videoModal');
-const modalIframe = document.getElementById('modalIframe');
-const modalTitle = document.getElementById('modalTitle');
-const modalCategory = document.getElementById('modalCategory');
-const closeBtn = document.querySelector('.close-btn');
-const overlay = document.querySelector('.modal-overlay');
+        /* --- YOUTUBE API LOGIC --- */
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// Open Modal logic
-document.querySelectorAll('.video-trigger').forEach(card => {
-    card.addEventListener('click', () => {
-        const videoId = card.getAttribute('data-video');
-        const title = card.getAttribute('data-title');
-        const category = card.getAttribute('data-category');
+        let player;
+        let progressInterval;
 
-        // Set content
-        modalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-        modalTitle.innerText = title;
-        modalCategory.innerText = category;
+        function loadVideo(videoId) {
+            if (player) { player.destroy(); }
+            player = new YT.Player('customPlayer', {
+                height: '100%',
+                width: '100%',
+                videoId: videoId,
+                playerVars: { 'autoplay': 1, 'controls': 0, 'modestbranding': 1, 'rel': 0, 'iv_load_policy': 3, 'showinfo': 0 },
+                events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+            });
+        }
 
-        // Show modal
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Stop scrolling
-    });
-});
+        function onPlayerReady(event) {
+            const playBtn = document.getElementById('mainPlayBtn');
+            const centerPlay = document.getElementById('centerPlay');
+            const progressContainer = document.getElementById('progressContainer');
+            const muteBtn = document.getElementById('muteBtn');
 
-// Close Modal function
-function closeModal() {
-    modal.classList.remove('active');
-    modalIframe.src = ""; // Stop the video
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
+            // Play/Pause
+            function togglePlay() {
+                if (player.getPlayerState() === YT.PlayerState.PLAYING) { player.pauseVideo(); }
+                else { player.playVideo(); }
+            }
+
+            document.getElementById('playPauseBig').addEventListener('click', togglePlay);
+            playBtn.addEventListener('click', togglePlay);
+
+            // Mute
+            muteBtn.addEventListener('click', () => {
+                if (player.isMuted()) { player.unMute(); muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>'; }
+                else { player.mute(); muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>'; }
+            });
+
+            // Seek
+            progressContainer.addEventListener('click', (e) => {
+                const rect = progressContainer.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                player.seekTo(pos * player.getDuration());
+            });
+
+            startTracking();
+        }
+
+        function onPlayerStateChange(event) {
+            const playBtn = document.getElementById('mainPlayBtn');
+            const centerPlay = document.getElementById('centerPlay');
+            if (event.data === YT.PlayerState.PLAYING) {
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                centerPlay.style.opacity = "0";
+            } else {
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                centerPlay.style.opacity = "0.8";
+            }
+        }
+
+        function startTracking() {
+            progressInterval = setInterval(() => {
+                if (player && player.getCurrentTime) {
+                    const cur = player.getCurrentTime();
+                    const dur = player.getDuration();
+                    document.getElementById('progressBar').style.width = (cur / dur * 100) + "%";
+                    document.getElementById('currTime').innerText = formatTime(cur);
+                    document.getElementById('totalTime').innerText = formatTime(dur);
+                }
+            }, 500);
+        }
+
+        function formatTime(time) {
+            time = Math.round(time);
+            let min = Math.floor(time / 60);
+            let sec = time - min * 60;
+            return min + ":" + (sec < 10 ? '0' + sec : sec);
+        }
+
+        // Initialize Triggers
+        document.querySelectorAll('.video-trigger').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-video');
+                document.getElementById('modalTitle').innerText = card.getAttribute('data-title');
+                document.getElementById('modalCategory').innerText = card.getAttribute('data-category');
+                loadVideo(id);
+                document.getElementById('videoModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close Logic
+        function closeModal() {
+            document.getElementById('videoModal').classList.remove('active');
+            if (player) player.stopVideo();
+            clearInterval(progressInterval);
+            document.body.style.overflow = 'auto';
+        }
+
+        document.querySelector('.close-btn').addEventListener('click', closeModal);
+        document.querySelector('.modal-overlay').addEventListener('click', closeModal);
+
+        // Theme Change Toggle Logic
+const themeBtn = document.getElementById('themeBtn');
+const body = document.body;
+const icon = themeBtn.querySelector('i');
+
+// Check for saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    body.classList.add('dark-theme');
+    updateIcon(true);
 }
 
-closeBtn.addEventListener('click', closeModal);
-overlay.addEventListener('click', closeModal);
-
-// Close on Escape Key
-document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape") closeModal();
+themeBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+    const isDark = body.classList.contains('dark-theme');
+    
+    // Save preference
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    
+    updateIcon(isDark);
 });
+
+function updateIcon(isDark) {
+    // This removes the old icon and creates a new one for Lucide to process
+    themeBtn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
+    lucide.createIcons();
+}
+// Function to handle Navbar visibility
+function handleNavScroll() {
+    const nav = document.querySelector('.nav-bar');
+
+    // Adjust '500' to change how soon the nav appears
+    if (window.scrollY > 500) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+}
+
+// Listen for scroll events
+window.addEventListener('scroll', handleNavScroll);
+
+// Run once on load in case the user refreshes mid-page
+handleNavScroll();
+
     </script>
 </body>
+
 </html>
