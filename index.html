@@ -312,19 +312,23 @@
         }
 
         .card-meta {
-            padding: 20px;
+            padding: 25px;
         }
 
         .card-meta span {
             font-family: 'JetBrains Mono';
-            font-size: 9px;
+            font-size: 12px;
             color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .card-meta h3 {
             margin-top: 8px;
             font-size: 18px;
             font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* --- SERVICES --- */
@@ -752,13 +756,80 @@
             font-size: 1.5rem;
         }
 
+
+        /* THE NUKE SLIDER (The Boss Upgrade) */
+        .lab-slider-container {
+            position: relative;
+            width: 80vw;
+            height: 50vh;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .lab-image {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .lab-before {
+            background-image: url('/images/labbefore.jpg');
+            filter: grayscale(0.2) contrast(1.2); 
+        }
+
+        .lab-after {
+            background-image: url('/images/labafter.jpg');
+            clip-path: inset(0 0 0 50%);
+        }
+
+        .slider-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-appearance: none;
+            background: transparent;
+            outline: none;
+            z-index: 10;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 2px;
+            height: 50vh;
+            background: var(--accent);
+            cursor: ew-resize;
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .lab-label-before {
+            position: absolute; bottom: 0; left: 0; background: var(--accent);
+            color: #000; font-family: 'JetBrains Mono'; font-size: 10px;
+            padding: 5px 12px; font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .lab-label-after {
+            position: absolute; bottom: 0; right: 0; background: var(--accent);
+            color: #000; font-family: 'JetBrains Mono'; font-size: 10px;
+            padding: 5px 12px; font-weight: bold;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
+
+    <!-- hud elements to simulate a cinematic system interface -->
+
 
 <body>
     <div class="hud top-left">N. ALE // SYSTEM_REEL_v4<br>STATUS: MONITORING</div>
     <div class="hud top-right">LOC: KATHMANDU, NEPAL<br>CURRENT_PROJECT: "ARCHIVE_2026"</div>
     <div class="hud bottom-right">X: <span id="mx">0</span><br>Y: <span id="my">0</span></div>
+
+    <!-- NAVIGATION -->
 
     <nav>
         <a href="#home">Home</a>
@@ -768,10 +839,16 @@
         <a href="#contact">Contact</a>
     </nav>
 
+    <!-- hero section  -->
+
     <section id="home" class="hero">
         <h1 id="title">NIRDESH ALE</h1>
         <p>REDEFINING CINEMATIC BOUNDARIES</p>
     </section>
+
+
+    <!-- about me section starts from here -->
+
 
     <section id="about" class="reveal">
         <div class="section-header">
@@ -781,12 +858,9 @@
         <div class="about-card">
             <div class="about-text">
                 <h3>DECODING THE VISION</h3>
-                <p>Third Act Creation is the culmination of years spent behind the lens and inside the node-graph. I
-                    specialize in the "Final Mile" of filmmaking—where technical precision meets emotional
-                    storytelling.
+                <p>I am a <strong>Video Editor and Cinematographer</strong> based in Kathmandu, specializing in the "Final Mile" of filmmaking—where technical precision meets emotional storytelling.
                 </p>
-                <p>Based in Kathmandu, I provide high-end post-production and cinematography services for productions
-                    that demand a distinctive, high-fidelity aesthetic.</p>
+                <p>With a focus on high-fidelity aesthetics, I bridge the gap between the lens and the timeline, ensuring every frame carries the weight of the intended narrative.</p>
 
                 <div class="specs-grid">
                     <div class="spec-item">
@@ -795,7 +869,7 @@
                     </div>
                     <div class="spec-item">
                         <label>SYSTEM_OS</label>
-                        <span>PREMIERE PRO // DAVINCI</span>
+                        <span>PREMIERE PRO</span>
                     </div>
                 </div>
             </div>
@@ -805,6 +879,29 @@
             </div>
         </div>
     </section>
+
+
+        <!-- lab slider section starts from here -->
+
+
+    <section id="color-grade">
+        <div class="section-header">
+        <h2>The Grading Lab // Plate Breakdown</h2>
+        </div>
+        <div class="lab-slider-container">
+            <div class="lab-image lab-before">
+                <h2 class="lab-label-before">//BEFORE</h2>
+            </div>
+            <div class="lab-image lab-after" id="lab-after">
+                <h2 class="lab-label-after">//AFTER</h2>
+            </div>
+            <input type="range" min="0" max="100" value="50" class="slider-input" id="lab-slider">
+        </div>
+        <p style="margin-top: 15px; font-family: monospace; font-size: 11px; letter-spacing: 1px; text-transform: initial;">[ SLIDE TO SEE THE DIFFERENCE ]</p>
+    </section>
+
+    <!-- WORK SECTION STARTS FROM HERE -->
+
 
     <section id="work">
         <div class="section-header reveal">
@@ -887,22 +984,22 @@
         </div>
 
         <div class="services-grid reveal">
-            <div class="interactive-card" style="padding: 30px; text-align: center;">
+            <div class="interactive-card" style="padding: 50px; text-align: center;">
                 <i data-lucide="clapperboard" style="color: var(--accent); margin-bottom: 15px;"></i>
                 <h3>Cinematography</h3>
-                <p style="color: var(--text-dim); font-size: 13px; margin-top: 10px;">Advanced camera operation focused
+                <p style="color: var(--text-dim); font-size: 14px; margin-top: 10px;">Advanced camera operation focused
                     on evocative lighting and visual depth.</p>
             </div>
-            <div class="interactive-card" style="padding: 30px; text-align: center;">
+            <div class="interactive-card" style="padding: 50px; text-align: center;">
                 <i data-lucide="scissors" style="color: var(--accent); margin-bottom: 15px;"></i>
                 <h3>Precision Editing</h3>
-                <p style="color: var(--text-dim); font-size: 13px; margin-top: 10px;">Masterful pacing and rhythm that
+                <p style="color: var(--text-dim); font-size: 14px; margin-top: 10px;">Masterful pacing and rhythm that
                     elevates narrative impact.</p>
             </div>
-            <div class="interactive-card" style="padding: 30px; text-align: center;">
+            <div class="interactive-card" style="padding: 50px; text-align: center;">
                 <i data-lucide="wand-2" style="color: var(--accent); margin-bottom: 15px;"></i>
                 <h3>Color Grading</h3>
-                <p style="color: var(--text-dim); font-size: 13px; margin-top: 10px;">Professional color science used to
+                <p style="color: var(--text-dim); font-size: 14px; margin-top: 10px;">Professional color science used to
                     manipulate mood and aesthetic.</p>
             </div>
         </div>
@@ -916,11 +1013,11 @@
             <h2>Connection</h2>
         </div>
         <div class="reveal social-items">
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i><span>INSTAGRAM</span></a>
-            <a href="#" class="social-link"><i class="fab fa-discord"></i><span>DISCORD</span></a>
-            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i><span>FACEBOOK</span></a>
-            <a href="#" class="social-link"><i class="fab fa-youtube"></i><span>YOUTUBE</span></a>
-            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i><span>WHATSAPP</span></a>
+            <a href="https://www.instagram.com/ig_neerdace" class="social-link"><i class="fab fa-instagram"></i><span>INSTAGRAM</span></a>
+            <a href="https://discord.gg/FV7CGsKNqs" class="social-link"><i class="fab fa-discord"></i><span>DISCORD</span></a>
+            <a href="https://www.facebook.com/neerdace" class="social-link"><i class="fab fa-facebook-f"></i><span>FACEBOOK</span></a>
+            <a href="https://www.youtube.com/@neerdace" class="social-link"><i class="fab fa-youtube"></i><span>YOUTUBE</span></a>
+            <a href="https://wa.me/9779860369302" class="social-link"><i class="fab fa-whatsapp"></i><span>WHATSAPP</span></a>
         </div>
         
         <form action="https://formspree.io/f/mdagzypa" method="POST" class="call-sheet reveal">
@@ -936,7 +1033,7 @@
                 <option value="" disabled selected>SELECT MISSION TYPE</option>
                 <option value="high_end_commercial">HIGH-END COMMERCIAL</option>
                 <option value="feature_film">FEATURE FILM</option>
-                <option value="vfx_supervision">MUSIC VIDEO</option>
+                <option value="lab_supervision">MUSIC VIDEO</option>
             </select>
 
             <textarea name="message" placeholder="PROJECT BRIEF / NOTES" rows="4" required></textarea>
@@ -944,6 +1041,8 @@
         </form>
     </section>
 
+        <!-- video modal for custom player -->
+ 
     <div id="videoModal" class="video-modal">
         <div class="modal-overlay" id="modalClose"></div>
         <div class="modal-container">
@@ -1095,6 +1194,14 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // lab Slider Logic
+        const labSlider = document.getElementById('lab-slider');
+        const labAfter = document.getElementById('lab-after');
+        labSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            labAfter.style.clipPath = `inset(0 0 0 ${val}%)`;
+        });
     </script>
 </body>
 
