@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THIRD ACT CREATION // PRO POST-HOUSE</title>
+    <title>NIRDESH ALE // Cinematic Portfolio</title>
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Syncopate:wght@700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -27,7 +30,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none;
         }
 
         html {
@@ -39,32 +41,27 @@
             color: var(--text);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            width: 100%;
         }
 
         /* --- HUD ELEMENTS --- */
-        #cursor {
-            width: 25px;
-            height: 25px;
-            border: 1px solid var(--accent);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 10000;
-            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            mix-blend-mode: difference;
-        }
-
         .hud {
             position: fixed;
-            padding: 25px;
+            padding: 15px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
+            font-size: 8px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             z-index: 100;
             color: var(--accent);
             pointer-events: none;
-            opacity: 0.7;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 800px) {
+            .hud {
+                display: none;
+            }
         }
 
         .top-left {
@@ -84,29 +81,42 @@
             text-align: right;
         }
 
+        @media (min-width: 768px) {
+            .hud {
+                font-size: 10px;
+                padding: 25px;
+                letter-spacing: 2px;
+                opacity: 0.7;
+            }
+        }
+
         /* --- NAVIGATION --- */
         nav {
             position: fixed;
-            top: 30px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
             display: flex;
-            gap: 30px;
+            gap: 15px;
             background: var(--surface);
-            padding: 12px 30px;
+            padding: 10px 20px;
             border-radius: 50px;
             border: 1px solid var(--border);
             backdrop-filter: var(--glass);
+            width: 90%;
+            max-width: fit-content;
+            justify-content: center;
         }
 
         nav a {
             color: var(--text-dim);
             text-decoration: none;
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.3s;
+            white-space: nowrap;
         }
 
         nav a:hover {
@@ -116,29 +126,25 @@
         /* --- SECTIONS --- */
         section {
             min-height: 100vh;
-            padding: 120px 5vw;
+            padding: 100px 5vw;
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .section-header h2 {
             font-size: 12px;
-            letter-spacing: 12px;
+            letter-spacing: 8px;
             color: var(--accent);
             text-transform: uppercase;
             margin-bottom: 10px;
             font-family: 'JetBrains Mono';
-        }
-
-        .section-header p {
-            color: var(--text-dim);
-            font-size: 14px;
         }
 
         /* --- HERO --- */
@@ -149,18 +155,19 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 12vw, 9rem);
+            font-size: clamp(2.5rem, 12vw, 9rem);
             font-weight: 900;
-            line-height: 0.8;
-            letter-spacing: -3px;
+            line-height: 0.9;
+            letter-spacing: -2px;
             margin-bottom: 20px;
+            transition: transform 0.1s ease-out;
         }
 
         .hero p {
             font-family: 'JetBrains Mono';
             color: var(--accent);
-            letter-spacing: 6px;
-            font-size: 13px;
+            letter-spacing: 3px;
+            font-size: 11px;
         }
 
         /* --- ABOUT ME SECTION --- */
@@ -170,30 +177,49 @@
             background: var(--surface);
             border: 1px solid var(--border);
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 40px;
-            padding: 60px;
+            padding: 30px;
             position: relative;
         }
 
+        @media (min-width: 900px) {
+            .about-card {
+                grid-template-columns: 1fr 1fr;
+                padding: 60px;
+            }
+        }
+
+        .about-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .about-text h3 {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 900;
             margin-bottom: 20px;
         }
 
         .about-text p {
             color: var(--text-dim);
-            line-height: 1.8;
+            line-height: 1.6;
             margin-bottom: 20px;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .specs-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 20px;
             margin-top: 30px;
+        }
+
+        @media (min-width: 480px) {
+            .specs-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .spec-item {
@@ -204,31 +230,44 @@
         .spec-item label {
             display: block;
             font-family: 'JetBrains Mono';
-            font-size: 10px;
+            font-size: 9px;
             color: var(--accent);
             margin-bottom: 5px;
         }
 
         .spec-item span {
             font-weight: 700;
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
         }
 
-        @media (max-width: 900px) {
-            .about-card {
-                grid-template-columns: 1fr;
-                padding: 30px;
-            }
+        .about-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            max-width: 420px;
+            object-fit: cover;
         }
 
         /* --- UNIFIED GRID & CARDS --- */
         .unified-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 25px;
             width: 100%;
             max-width: 1400px;
+        }
+
+        @media (min-width: 768px) {
+            .unified-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .interactive-card {
@@ -241,7 +280,8 @@
 
         .interactive-card:hover {
             border-color: var(--accent);
-            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--accent-dim);
+            transform: translateY(-3px);
         }
 
         .iframe-wrapper {
@@ -257,16 +297,17 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 50px;
+            font-size: 40px;
             color: white;
             opacity: 0.8;
             transition: 0.3s;
             pointer-events: none;
+            z-index: 2;
         }
 
         .interactive-card:hover .center-play {
-            transform: translate(-50%, -50%) scale(1.2);
             opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
             color: var(--accent);
         }
 
@@ -276,15 +317,151 @@
 
         .card-meta span {
             font-family: 'JetBrains Mono';
-            font-size: 10px;
+            font-size: 12px;
             color: var(--accent);
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .card-meta h3 {
-            margin-top: 10px;
-            font-size: 20px;
+            margin-top: 8px;
+            font-size: 18px;
             font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- SERVICES --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* --- CONTACT --- */
+        .call-sheet {
+            width: 100%;
+            max-width: 800px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 30px;
+            backdrop-filter: var(--glass);
+            margin-top: 50px;
+        }
+
+        @media (min-width: 768px) {
+            .call-sheet {
+                padding: 60px;
+            }
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+            color: white;
+            font-family: 'JetBrains Mono';
+            outline: none;
+            font-size: 14px;
+        }
+
+        option {
+            background: var(--bg);
+        }
+
+        .btn-greenlight {
+            background: var(--accent);
+            color: black;
+            border: none;
+            padding: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .social-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .social-link {
+            font-family: 'JetBrains Mono';
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 10px;
+            border: 1px solid var(--accent-dim);
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        /* Hide text and keep only icons on mobile devices */
+        @media (max-width: 600px) {
+            .social-link span {
+                display: none;
+                /* Hides the text */
+            }
+
+            .social-link {
+                padding: 12px;
+                /* Makes the button square-ish for the icon */
+                justify-content: center;
+                width: 45px;
+                /* Optional: forces a consistent size */
+                height: 45px;
+            }
+
+            .social-items {
+                gap: 10px;
+                /* Tightens the gap between icons */
+            }
+        }
+
+
+        .social-items a:hover {
+            background: var(--accent);
+            color: black;
+            border-color: var(--accent);
+            transform: translateY(-3px);
         }
 
         /* --- VIDEO MODAL --- */
@@ -295,6 +472,7 @@
             display: none;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
 
         .modal-overlay {
@@ -354,24 +532,322 @@
         /* --- REVEAL ANIMATION --- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(20px);
+            transition: 0.8s ease-out;
         }
 
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            font-family: 'JetBrains Mono';
+            font-size: 9px;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 18px;
+        }
+
+        /* --- CUSTOM PLAYER MODAL STYLES --- */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .video-modal.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .modal-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 17, 20, 0.98);
+            backdrop-filter: blur(15px);
+        }
+
+        .modal-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            z-index: 10;
+        }
+
+        .modal-video-box {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #21242a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(33, 36, 42, 0.8);
+            border: 1px solid var(--border);
+        }
+
+        #modalIframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-footer {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .modal-footer h3 {
+            font-family: 'Syncopate';
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .modal-footer p {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg) scale(1.2);
+            color: var(--accent);
+        }
+
+        .video-trigger {
+            cursor: pointer;
+        }
+
+        .player-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #222;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        #customPlayer {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* The Shield protects the YT logo from being clicked */
+        .video-shield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            cursor: pointer;
+        }
+
+        .center-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: var(--accent);
+            z-index: 6;
+            pointer-events: none;
+            transition: 0.3s;
+            opacity: 0.8;
+        }
+
+        .custom-controls {
+            background: #1a1d23;
+            padding: 25px;
+            border-radius: 0 0 12px 12px;
+            border: 1px solid var(--border);
+            border-top: none;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+            color: #e9dfd8;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .time-display {
+            font-size: 0.8rem;
+            color: #888;
+            font-family: monospace;
+            min-width: 45px;
+        }
+
+        .meta-info {
+            margin-top: 15px;
+        }
+
+        .theme-title {
+            font-family: 'Syncopate';
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #e9dfd8;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #e9dfd8;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+
+        /* THE NUKE SLIDER (The Boss Upgrade) */
+        .lab-slider-container {
+            position: relative;
+            width: 80vw;
+            height: 50vh;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .lab-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .lab-before {
+            background-image: url('/images/labbefore.jpg');
+            filter: grayscale(0.2) contrast(1.2);
+        }
+
+        .lab-after {
+            background-image: url('/images/labafter.jpg');
+            clip-path: inset(0 0 0 50%);
+        }
+
+        .slider-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-appearance: none;
+            background: transparent;
+            outline: none;
+            z-index: 10;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 2px;
+            height: 50vh;
+            background: var(--accent);
+            cursor: ew-resize;
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .lab-label-before {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: var(--accent);
+            color: #000;
+            font-family: 'JetBrains Mono';
+            font-size: 10px;
+            padding: 5px 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .lab-label-after {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: var(--accent);
+            color: #000;
+            font-family: 'JetBrains Mono';
+            font-size: 10px;
+            padding: 5px 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 
+<!-- hud elements to simulate a cinematic system interface -->
+
+
 <body>
-
-    <div id="cursor"></div>
-
-    <div class="hud top-left">TAC // SYSTEM_REEL_v4<br>STATUS: MONITORING</div>
+    <div class="hud top-left">N. ALE // SYSTEM_REEL_v4<br>STATUS: MONITORING</div>
     <div class="hud top-right">LOC: KATHMANDU, NEPAL<br>CURRENT_PROJECT: "ARCHIVE_2026"</div>
     <div class="hud bottom-right">X: <span id="mx">0</span><br>Y: <span id="my">0</span></div>
+
+    <!-- NAVIGATION -->
 
     <nav>
         <a href="#home">Home</a>
@@ -381,64 +857,81 @@
         <a href="#contact">Contact</a>
     </nav>
 
+    <!-- hero section  -->
+
     <section id="home" class="hero">
-        <h1 id="title">THIRD ACT<br>CREATION</h1>
+        <h1 id="title">NIRDESH ALE</h1>
         <p>REDEFINING CINEMATIC BOUNDARIES</p>
     </section>
 
-    <section id="about">
-        <div class="section-header reveal">
-            <h2 style="font-size: 14px; letter-spacing: 12px; color: var(--accent); margin-bottom: 50px; font-family: 'JetBrains Mono'; text-transform: uppercase;">The Architect</h2>
+
+    <!-- about me section starts from here -->
+
+
+    <section id="about" class="reveal">
+        <div class="section-header">
+            <h2>The Architect</h2>
         </div>
 
-        <div class="about-card reveal">
+        <div class="about-card">
             <div class="about-text">
                 <h3>DECODING THE VISION</h3>
-                <p>Third Act Creation is the culmination of years spent behind the lens and inside the node-graph. I
-                    specialize in the "Final Mile" of filmmaking—where technical precision meets emotional storytelling.
+                <p>I am a <strong>Video Editor and Cinematographer</strong> based in Kathmandu, specializing in the
+                    "Final Mile" of filmmaking—where technical precision meets emotional storytelling.
                 </p>
-                <p>Based in Kathmandu, I provide high-end post-production and cinematography services for productions
-                    that demand a distinctive, high-fidelity aesthetic.</p>
+                <p>With a focus on high-fidelity aesthetics, I bridge the gap between the lens and the timeline,
+                    ensuring every frame carries the weight of the intended narrative.</p>
 
                 <div class="specs-grid">
                     <div class="spec-item">
                         <label>CORE_EXPERTISE</label>
-                        <span>VFX & COLOR SCIENCE</span>
+                        <span>COLOR GRADING // CINEMATOGRAPHY</span>
                     </div>
                     <div class="spec-item">
                         <label>SYSTEM_OS</label>
-                        <span>NUKE // DAVINCI</span>
+                        <span>PREMIERE PRO</span>
                     </div>
                 </div>
             </div>
 
-            <div class="about-text"
-                style="background: rgba(0,0,0,0.2); padding: 30px; border: 1px solid var(--border);">
-                <h4 style="font-family: 'JetBrains Mono'; font-size: 12px; color: var(--accent); margin-bottom: 20px;">
-                    MISSION_PARAMETERS</h4>
-                <ul style="list-style: none; font-size: 14px; color: var(--text-dim);">
-                    <li style="margin-bottom: 15px;"><i class="fas fa-check"
-                            style="color: var(--accent); margin-right: 10px;"></i> Advanced Set Extensions & Cleanups
-                    </li>
-                    <li style="margin-bottom: 15px;"><i class="fas fa-check"
-                            style="color: var(--accent); margin-right: 10px;"></i> Narrative-driven Color Grading</li>
-                    <li style="margin-bottom: 15px;"><i class="fas fa-check"
-                            style="color: var(--accent); margin-right: 10px;"></i> Commercial Cinematography</li>
-                    <li style="margin-bottom: 15px;"><i class="fas fa-check"
-                            style="color: var(--accent); margin-right: 10px;"></i> IMAX & Netflix Workflow Ready</li>
-                </ul>
+            <div class="about-img" style="background: rgba(0,0,0,0.2); padding: 20px; border: 1px solid var(--border);">
+                <img src="/images/aboutme.jpg" alt="About Me">
             </div>
         </div>
     </section>
 
+
+    <!-- lab slider section starts from here -->
+
+
+    <section id="color-grade">
+        <div class="section-header">
+            <h2>The Grading Lab // Plate Breakdown</h2>
+        </div>
+        <div class="lab-slider-container">
+            <div class="lab-image lab-before">
+                <h2 class="lab-label-before">//BEFORE</h2>
+            </div>
+            <div class="lab-image lab-after" id="lab-after">
+                <h2 class="lab-label-after">//AFTER</h2>
+            </div>
+            <input type="range" min="0" max="100" value="50" class="slider-input" id="lab-slider">
+        </div>
+        <p
+            style="margin-top: 15px; font-family: monospace; font-size: 11px; letter-spacing: 1px; text-transform: initial;">
+            [ SLIDE TO SEE THE DIFFERENCE ]</p>
+    </section>
+
+    <!-- WORK SECTION STARTS FROM HERE -->
+
+
     <section id="work">
         <div class="section-header reveal">
-            <h2 style="font-size: 14px; letter-spacing: 12px; color: var(--accent); margin-bottom: 50px; font-family: 'JetBrains Mono'; text-transform: uppercase;">
-                Project Archive</h2>
+            <h2>Project Archive</h2>
         </div>
 
-        <div class="unified-grid">
-            <div class="interactive-card hover-card reveal video-trigger" data-video="Yc4NF8kOM6c"
+        <div class="unified-grid reveal">
+            <div class="interactive-card video-trigger" data-video="Yc4NF8kOM6c"
                 data-title="Nepali Traditional Marriage Video" data-category="Editor / Color / Cinematography">
                 <div class="iframe-wrapper">
                     <img src="https://img.youtube.com/vi/Yc4NF8kOM6c/maxresdefault.jpg"
@@ -451,8 +944,8 @@
                 </div>
             </div>
 
-            <div class="interactive-card hover-card reveal video-trigger" data-video="dv8pAiu2peQ"
-                data-title="Eternal Summer" data-category="Cinematography">
+            <div class="interactive-card video-trigger" data-video="dv8pAiu2peQ" data-title="Eternal Summer"
+                data-category="Cinematography">
                 <div class="iframe-wrapper">
                     <img src="https://img.youtube.com/vi/dv8pAiu2peQ/maxresdefault.jpg"
                         style="width:100%; height:100%; object-fit:cover; position:absolute;">
@@ -466,108 +959,328 @@
         </div>
     </section>
 
-    <section id="services">
-        <div class="section-header reveal">
-            <h2 style="font-size: 14px; letter-spacing: 12px; color: var(--accent); margin-bottom: 50px; font-family: 'JetBrains Mono'; text-transform: uppercase;">
-                Core Services</h2>
-        </div>
 
-        <div class="unified-grid">
-            <div class="interactive-card reveal" style="padding: 40px; text-align: center;">
-                <i data-lucide="clapperboard" style="color: var(--accent); margin-bottom: 20px;"></i>
-                <h3>Cinematography</h3>
-                <p style="color: var(--text-dim); font-size: 14px; margin-top: 15px;">Advanced camera operation focused
-                    on evocative lighting and visual depth.</p>
+    <!-- Custom video player -->
+
+
+    <div id="videoModal" class="video-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="close-btn"><i data-lucide="x"></i></button>
+
+            <div class="player-wrapper">
+                <div id="customPlayer"></div>
+                <div class="video-shield" id="playPauseBig"></div>
+                <div class="center-play" id="centerPlay"><i class="fas fa-play"></i></div>
             </div>
-            <div class="interactive-card reveal" style="padding: 40px; text-align: center;">
-                    <i data-lucide="scissors" style="color: var(--accent); margin-bottom: 20px;"></i>
-                    <h3>Precision Editing</h3>
-                    <p style="color: var(--text-dim); font-size: 14px; margin-top: 15px;">Masterful pacing and rhythm that elevates narrative impact and
-                        maintains viewer retention.</p>
+
+            <div class="custom-controls">
+                <div class="control-row">
+                    <button id="mainPlayBtn" class="theme-btn"><i class="fas fa-play"></i></button>
+                    <div class="time-display"><span id="currTime">0:00</span></div>
+
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+
+                    <div class="time-display"><span id="totalTime">0:00</span></div>
+                    <button id="muteBtn" class="theme-btn"><i class="fas fa-volume-up"></i></button>
+                </div>
+
+                <div class="meta-info">
+                    <p id="modalTitle" class="theme-title">PROJECT TITLE</p>
+                    <p id="modalCategory"
+                        style="color: var(--accent); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-top: 5px;">
+                    </p>
                 </div>
             </div>
-            <div class="interactive-card reveal" style="padding: 40px; text-align: center;">
-                <i data-lucide="wand-2" style="color: var(--accent); margin-bottom: 20px;"></i>
+        </div>
+    </div>
+
+
+    <!-- services section starting from here -->
+
+
+    <section id="services">
+        <div class="section-header reveal">
+            <h2>Core Services</h2>
+        </div>
+
+        <div class="services-grid reveal">
+            <div class="interactive-card" style="padding: 50px; text-align: center;">
+                <i data-lucide="clapperboard" style="color: var(--accent); margin-bottom: 15px;"></i>
+                <h3>Cinematography</h3>
+                <p style="color: var(--text-dim); font-size: 14px; margin-top: 10px;">Advanced camera operation focused
+                    on evocative lighting and visual depth.</p>
+            </div>
+            <div class="interactive-card" style="padding: 50px; text-align: center;">
+                <i data-lucide="scissors" style="color: var(--accent); margin-bottom: 15px;"></i>
+                <h3>Precision Editing</h3>
+                <p style="color: var(--text-dim); font-size: 14px; margin-top: 10px;">Masterful pacing and rhythm that
+                    elevates narrative impact.</p>
+            </div>
+            <div class="interactive-card" style="padding: 50px; text-align: center;">
+                <i data-lucide="wand-2" style="color: var(--accent); margin-bottom: 15px;"></i>
                 <h3>Color Grading</h3>
-                <p style="color: var(--text-dim); font-size: 14px; margin-top: 15px;">Professional color science used to
+                <p style="color: var(--text-dim); font-size: 14px; margin-top: 10px;">Professional color science used to
                     manipulate mood and aesthetic.</p>
             </div>
         </div>
     </section>
 
+    <!-- CONTACT SECTION STARTS FROM HERE -->
+
+
     <section id="contact">
         <div class="section-header reveal">
-            <h2 style="font-size: 14px; letter-spacing: 12px; color: var(--accent); margin-bottom: 50px; font-family: 'JetBrains Mono'; text-transform: uppercase;">
-                Connection</h2>
+            <h2>Connection</h2>
         </div>
-        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i> INSTAGRAM</a>
-            <a href="#" class="social-link"><i class="fab fa-vimeo-v"></i> VIMEO</a>
+        <div class="reveal social-items">
+            <a href="https://www.instagram.com/ig_neerdace" class="social-link"><i
+                    class="fab fa-instagram"></i><span>INSTAGRAM</span></a>
+            <a href="https://discord.gg/FV7CGsKNqs" class="social-link"><i
+                    class="fab fa-discord"></i><span>DISCORD</span></a>
+            <a href="https://www.facebook.com/neerdace" class="social-link"><i
+                    class="fab fa-facebook-f"></i><span>FACEBOOK</span></a>
+            <a href="https://www.youtube.com/@neerdace" class="social-link"><i
+                    class="fab fa-youtube"></i><span>YOUTUBE</span></a>
+            <a href="https://wa.me/9779860369302" class="social-link"><i
+                    class="fab fa-whatsapp"></i><span>WHATSAPP</span></a>
         </div>
+
+        <form id="contact-Form" method="POST" class="call-sheet reveal">
+            <h2 style="margin-bottom: 30px; font-weight: 400; letter-spacing: 1px; font-size: 20px;">Ready to start your
+                next production?</h2>
+
+            <div class="form-row">
+                <input type="text" name="production_name" placeholder="PRODUCTION NAME" required>
+                <input type="email" name="email" placeholder="EMAIL ADDRESS" required>
+            </div>
+
+            <select name="mission_type" style="margin-bottom: 25px; color: var(--accent);" required>
+                <option value="" disabled selected>SELECT MISSION TYPE</option>
+                <option value="high_end_commercial">HIGH-END COMMERCIAL</option>
+                <option value="feature_film">FEATURE FILM</option>
+                <option value="lab_supervision">MUSIC VIDEO</option>
+            </select>
+
+            <textarea name="message" placeholder="PROJECT BRIEF / NOTES" rows="4" required></textarea>
+            <button class="btn-greenlight" type="submit">GREENLIGHT PROJECT</button>
+        </form>
+
+        <div id="success-message" style="display: none; text-align: center; padding: 40px 20px;">
+            <h2 style="margin-bottom: 15px; font-weight: 400; letter-spacing: 1px; font-size: 24px; color: #4CAF50;">
+                PROJECT GREENLIT!</h2>
+            <p style="font-size: 16px; opacity: 0.8; line-height: 1.5;">
+                We have received your brief.<br>Our team is reviewing the script and will contact you shortly.
+            </p>
+            <button onclick="location.reload()"
+                style="margin-top: 20px; background: transparent; border: 1px solid currentColor; color: inherit; padding: 10px 20px; cursor: pointer;">START
+                ANOTHER</button>
+        </div>
+
     </section>
 
-    <div id="videoModal" class="video-modal">
-        <div class="modal-overlay" id="modalClose"></div>
-        <div class="modal-container">
-            <div class="player-wrapper">
-                <div id="customPlayer"></div>
-            </div>
-            <div class="custom-controls">
-                <div class="control-row">
-                    <button id="mainPlayBtn" style="background:none; border:none; color:white; font-size:20px;"><i
-                            class="fas fa-play"></i></button>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="progressBar"></div>
-                    </div>
-                    <button id="closeX" style="background:none; border:none; color:white;"><i
-                            data-lucide="x"></i></button>
-                </div>
-                <p id="modalTitle" style="font-weight:900;"></p>
-            </div>
-        </div>
-    </div>
+    <footer class="reveal">
+        nirdesh ale // ALL RIGHTS RESERVED © 2026 <br>
+        cinematic architect & color alchemist
+    </footer>
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         lucide.createIcons();
-        const cursor = document.getElementById('cursor');
         const title = document.getElementById('title');
 
+        // Track mouse for HUD and 3D Tilt Effect
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
             document.getElementById('mx').innerText = e.clientX;
             document.getElementById('my').innerText = e.clientY;
 
+            // 3D Tilt for Hero Title
             const xMove = (window.innerWidth / 2 - e.clientX) / 40;
             const yMove = (window.innerHeight / 2 - e.clientY) / 40;
-            title.style.transform = `rotateY(${xMove}deg) rotateX(${yMove}deg)`;
+            if (title) {
+                title.style.transform = `rotateY(${xMove}deg) rotateX(${yMove}deg)`;
+            }
         });
 
+        /* --- YOUTUBE API LOGIC --- */
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
         let player;
+        let progressInterval;
+
+        function loadVideo(videoId) {
+            if (player) { player.destroy(); }
+            player = new YT.Player('customPlayer', {
+                height: '100%',
+                width: '100%',
+                videoId: videoId,
+                playerVars: { 'autoplay': 1, 'controls': 0, 'modestbranding': 1, 'rel': 0, 'iv_load_policy': 3, 'showinfo': 0 },
+                events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+            });
+        }
+
+        function onPlayerReady(event) {
+            const playBtn = document.getElementById('mainPlayBtn');
+            const centerPlay = document.getElementById('centerPlay');
+            const progressContainer = document.getElementById('progressContainer');
+            const muteBtn = document.getElementById('muteBtn');
+
+            // Play/Pause
+            function togglePlay() {
+                if (player.getPlayerState() === YT.PlayerState.PLAYING) { player.pauseVideo(); }
+                else { player.playVideo(); }
+            }
+
+            document.getElementById('playPauseBig').addEventListener('click', togglePlay);
+            playBtn.addEventListener('click', togglePlay);
+
+            // Mute
+            muteBtn.addEventListener('click', () => {
+                if (player.isMuted()) { player.unMute(); muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>'; }
+                else { player.mute(); muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>'; }
+            });
+
+            // Seek
+            progressContainer.addEventListener('click', (e) => {
+                const rect = progressContainer.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                player.seekTo(pos * player.getDuration());
+            });
+
+            startTracking();
+        }
+
+        function onPlayerStateChange(event) {
+            const playBtn = document.getElementById('mainPlayBtn');
+            const centerPlay = document.getElementById('centerPlay');
+            if (event.data === YT.PlayerState.PLAYING) {
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                centerPlay.style.opacity = "0";
+            } else {
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                centerPlay.style.opacity = "0.8";
+            }
+        }
+
+        function startTracking() {
+            progressInterval = setInterval(() => {
+                if (player && player.getCurrentTime) {
+                    const cur = player.getCurrentTime();
+                    const dur = player.getDuration();
+                    document.getElementById('progressBar').style.width = (cur / dur * 100) + "%";
+                    document.getElementById('currTime').innerText = formatTime(cur);
+                    document.getElementById('totalTime').innerText = formatTime(dur);
+                }
+            }, 500);
+        }
+
+        function formatTime(time) {
+            time = Math.round(time);
+            let min = Math.floor(time / 60);
+            let sec = time - min * 60;
+            return min + ":" + (sec < 10 ? '0' + sec : sec);
+        }
+
+        // Initialize Triggers
         document.querySelectorAll('.video-trigger').forEach(card => {
             card.addEventListener('click', () => {
-                const videoId = card.getAttribute('data-video');
+                const id = card.getAttribute('data-video');
                 document.getElementById('modalTitle').innerText = card.getAttribute('data-title');
-                document.getElementById('videoModal').style.display = 'flex';
-                if (player) { player.loadVideoById(videoId); }
-                else { player = new YT.Player('customPlayer', { videoId: videoId, playerVars: { 'autoplay': 1, 'controls': 0 } }); }
+                document.getElementById('modalCategory').innerText = card.getAttribute('data-category');
+                loadVideo(id);
+                document.getElementById('videoModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
         });
 
-        document.getElementById('modalClose').addEventListener('click', () => {
-            document.getElementById('videoModal').style.display = 'none';
-            player.stopVideo();
-        });
+        // Close Logic
+        function closeModal() {
+            document.getElementById('videoModal').classList.remove('active');
+            if (player) player.stopVideo();
+            clearInterval(progressInterval);
+            document.body.style.overflow = 'auto';
+        }
+
+        document.querySelector('.close-btn').addEventListener('click', closeModal);
+        document.querySelector('.modal-overlay').addEventListener('click', closeModal);
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        document.querySelectorAll('a, button, .interactive-card').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2.5)');
-            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        // lab Slider Logic
+        const labSlider = document.getElementById('lab-slider');
+        const labAfter = document.getElementById('lab-after');
+        labSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            labAfter.style.clipPath = `inset(0 0 0 ${val}%)`;
+        });
+    </script>
+    <script>
+
+
+        // for database form submission
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyD4d71OHUa4AWmsyzzsX_lxLtz9UH7JHuo",
+            authDomain: "test-proj-d14d1.firebaseapp.com",
+            projectId: "test-proj-d14d1",
+            storageBucket: "test-proj-d14d1.firebasestorage.app",
+            messagingSenderId: "530705070379",
+            appId: "1:530705070379:web:2ecb935da1289a3709ed6e",
+            measurementId: "G-07VTXN5HDB"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const contactForm = document.getElementById('contact-Form');
+        const successMsg = document.getElementById('success-message');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+
+            // Data to send
+            const formData = {
+                production_name: e.target.production_name.value,
+                email: e.target.email.value,
+                mission_type: e.target.mission_type.value,
+                message: e.target.message.value,
+                submittedAt: new Date().toISOString()
+            };
+
+            try {
+                submitBtn.innerText = "PROCESSING...";
+                submitBtn.disabled = true;
+
+                // Send to Firebase
+                await addDoc(collection(db, "projects"), formData);
+
+                // --- CHANGE IS HERE ---
+                // 1. Hide the Form
+                contactForm.style.display = 'none';
+
+                // 2. Show the Thank You Message
+                successMsg.style.display = 'block';
+
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                alert("Error submitting form. Please check your internet connection.");
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
         });
     </script>
 </body>
